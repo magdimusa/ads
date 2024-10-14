@@ -178,7 +178,7 @@ const Clients = () => {
         <Modal open={open} onClose={handleClose} className="modal">
           <div className="modal-content">
             <div className="modal-header">
-              <h2>become_client</h2>
+              <h2>Mijoz Bo'lish</h2>
               <CloseIcon className="close-icon" onClick={handleClose} />
             </div>
             <form className="modal-form" onSubmit={handleSubmit}>
@@ -218,7 +218,7 @@ const Clients = () => {
                 onChange={settingText}
               />
               <button type="submit" className="btn modal__btn">
-                submit
+                Jo'natish
               </button>
             </form>
           </div>
