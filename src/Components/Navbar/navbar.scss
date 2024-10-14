@@ -1,0 +1,102 @@
+body.light-theme {
+  background-color: #fff !important;
+  color: #000;
+}
+
+body {
+  background-color: #2c3e50 !important;
+  color: #fff;
+}
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+
+  .container {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__menu {
+    list-style: none;
+    display: flex;
+
+    &-item {
+      margin-right: 20px;
+
+      a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+
+    &-input {
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+
+    &-button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: white;
+
+    &__time,
+    &__phone {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+
+    button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    &__toggle-theme,
+    &__favorites {
+      font-size: 20px;
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+
+    /* Optional dropdown styles here */
+  }
+
+  .navbar__menu-item:hover .navbar__dropdown {
+    display: block;
+  }
+}
