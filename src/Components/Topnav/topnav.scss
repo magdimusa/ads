@@ -1,8 +1,13 @@
-header .header-top {
-  border-bottom: 1px solid rgba(229, 237, 239, 0.2);
-  color: #fff;
-  background-color: rgb(3, 22, 29);
-  box-sizing: border-box;
+.header-top {
+  border-bottom: 1px solid rgba(229, 237, 239, 0.2); /* Dark mode */
+  color: #fff; /* Dark mode matn rangi */
+  background-color: rgb(3, 22, 29); /* Dark mode fon rangi */
+
+  &.light-mode {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light mode */
+    color: #333; /* Light mode matn rangi */
+    background-color: #f9f9f9; /* Light mode fon rangi */
+  }
 
   .container {
     justify-content: space-between;
@@ -11,67 +16,68 @@ header .header-top {
     gap: 10px;
 
     .logo-wrapper {
-      align-items: center;
       display: flex;
+      align-items: center;
       gap: 10px;
 
-      .logo {
-        display: block;
-
-        img {
-          height: 100%;
-          max-height: 72px;
-          max-width: 83px;
-          width: 100%;
-          border-radius: 50%;
+      .logo img {
+        height: 100%;
+        max-height: 72px;
+        max-width: 83px;
+        width: 100%;
+        border-radius: 50%; /* Dark mode */
+        .light-mode & {
+          border-radius: 50%; /* Light mode */
         }
       }
     }
 
     .header-top-wrapper {
-      align-items: center;
       display: flex;
+      align-items: center;
       gap: 24px;
 
-      .advertasing {
-        align-items: center;
-        display: flex;
-        gap: 12px;
+      .advertasing .advertasing-btn {
+        background-color: #fff; /* Dark mode */
+        color: #333; /* Button yozuvi Dark mode */
+        height: 30px;
 
-        .advertasing-btn {
-          background-color: #fff;
-          background-position: 50%;
-          background-repeat: no-repeat;
-          background-size: cover;
-          border-radius: 30px;
-          height: 40px;
-          overflow: hidden;
-          width: 146px;
-          height: 30px;
+        .light-mode & {
+          background-color: #333; /* Light mode */
+          color: #fff; /* Button yozuvi Light mode */
         }
       }
 
       .link {
-        align-items: center;
         display: flex;
         gap: 12px;
 
         .link-btn {
           align-items: center;
-          background-color: #fff3;
+          background-color: rgba(255, 255, 255, 0.1); /* Dark mode */
+          color: #fff; /* Dark mode link matni */
           border-radius: 12px;
           display: flex;
           gap: 8px;
           overflow: hidden;
           padding: 9px 24px 9px 18px;
           position: relative;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: rgba(
+              255,
+              255,
+              255,
+              0.2
+            ); /* Hover effekti Dark mode */
+            color: #0a97bc; /* Hoverda matn rangi Dark mode */
+          }
 
           &::after {
             animation: anim 3s ease infinite;
-            background: #0a97bc;
-            background: var(--prColor);
+            background: #0a97bc; /* Dark mode */
             box-shadow: 50px 75px 100px 50px #0a97bc;
-            box-shadow: 50px 75px 100px 50px var(--prColor);
             content: "";
             height: 40px;
             left: -300%;
@@ -80,46 +86,136 @@ header .header-top {
             transition: 0.2s ease;
             width: 40px;
             z-index: 1;
+
+            .light-mode & {
+              background: #ff8c00; /* Light mode */
+              box-shadow: 50px 75px 100px 50px #ff8c00;
+            }
           }
 
-          .link-text {
-            font-size: 14px;
-            line-height: 16px;
+          .light-mode & {
+            background-color: rgba(0, 0, 0, 0.05); /* Light mode */
+            color: #333; /* Light mode link matni */
+          }
+
+          .light-mode &:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Light mode hover */
+            color: #ff8c00; /* Hoverda matn rangi Light mode */
           }
         }
 
-        .link-btn.one {
-          animation-delay: 0.5s;
-        }
-
-        .link-btn.three {
-          animation-delay: 1s;
+        .link-text {
+          font-size: 14px;
+          line-height: 16px;
         }
       }
     }
 
-    .number {
-      display: none;
-      flex-direction: column-reverse;
-      gap: 8px;
+    .languages.desktop {
+      display: flex;
 
-      .num-btn {
-        align-items: center;
+      .menu-languages {
         display: flex;
-        font-family: "Inter", sans-serif;
-        gap: 8px;
+        gap: 10px;
 
-        .num-text {
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 19px;
+        .language-item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+
+          &:hover {
+            text-decoration: underline; /* Hover uchun aniq effekt */
+            color: #0a97bc; /* Dark mode hover rangi */
+          }
+
+          .light-mode &:hover {
+            color: #ff8c00; /* Light mode hover rangi */
+          }
+        }
+      }
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .icon-moon {
+        font-size: 24px;
+        color: #fff; /* Dark mode o'ycha ikonkasi */
+        display: inline-block;
+
+        .light-mode & {
+          display: none; /* Light mode uchun o'ycha yashiriladi */
+        }
+      }
+
+      .icon-sun {
+        font-size: 24px;
+        color: #ff8c00; /* Light mode quyosh ikonkasi */
+        display: none;
+
+        .light-mode & {
+          display: inline-block; /* Light mode uchun quyosh belgisi */
+        }
+      }
+
+      .toggle-switch {
+        position: relative;
+        width: 60px;
+        height: 34px;
+
+        input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc; /* Default rang */
+          transition: all 0.3s ease;
+          border-radius: 34px;
+
+          &::before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #fff;
+            transition: 0.4s;
+            border-radius: 50%;
+          }
+
+          input:checked + .slider {
+            background-color: #2196f3; /* Dark mode */
+          }
+
+          input:checked + .slider::before {
+            transform: translateX(26px);
+          }
+
+          .light-mode & {
+            background-color: #f0c36d; /* Light mode */
+          }
+
+          .light-mode &::before {
+            background-color: #000; /* Light mode uchun tugmachaning rangi */
+          }
         }
       }
     }
   }
-}
-
-.language-item:hover {
-  color: #00caff;
-  transition: 0.3s;
 }

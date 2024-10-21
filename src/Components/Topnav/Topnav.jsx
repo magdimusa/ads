@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./topnav.scss";
 import uz from "../../img/uz.png";
 import en from "../../img/en.png";
@@ -6,15 +6,43 @@ import ru from "../../img/ru.png";
 import logo from "../../img/logotip.png";
 
 const Topnav = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Load mode from localStorage on component mount
+  useEffect(() => {
+    const savedMode = localStorage.getItem("theme");
+    if (savedMode === "dark") {
+      setIsDarkMode(true);
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+    } else {
+      setIsDarkMode(false);
+      document.body.classList.add("light-mode");
+      document.body.classList.remove("dark-mode");
+    }
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.add("light-mode");
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
-    <div className="header-top p-2">
+    <div
+      className={`header-top p-2 ${isDarkMode ? "dark-mode" : "light-mode"}`}
+    >
       <div className="container">
         <div className="logo-wrapper">
-          <a
-            aria-current="page"
-            href="/"
-            className="router-link-active router-link-exact-active logo"
-          >
+          <a href="/" className="logo">
             <img alt="in out" width="83" height="72" src={logo} />
           </a>
           <div className="header-top-wrapper">
@@ -56,11 +84,7 @@ const Topnav = () => {
         </div>
         <div className="languages desktop">
           <div className="menu-languages">
-            <a
-              aria-current="page"
-              href="/#comments"
-              className="router-link-active router-link-exact-active language-item"
-            >
+            <a href="/#comments" className="language-item">
               <img src={uz} alt="flag" /> uz
             </a>
             <a href="/en#comments" className="language-item">
@@ -70,6 +94,18 @@ const Topnav = () => {
               <img src={ru} alt="flag" /> ru
             </a>
           </div>
+        </div>
+        <div className="theme-toggle">
+          <span className="icon-moon">🌙</span>
+          <label className="toggle-switch">
+            <input
+              type="checkbox"
+              id="theme-toggle-checkbox"
+              onChange={toggleDarkMode}
+            />
+            <span className="slider"></span>
+          </label>
+          <span className="icon-sun">☀️</span>
         </div>
       </div>
     </div>
